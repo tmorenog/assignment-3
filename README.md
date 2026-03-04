@@ -51,4 +51,4 @@ This app uses in-memory storage (`app.locals.meetings`), so data is reset whenev
 
 ## Deployment
 
-Public URL: to be added
+Public URL: (https://assignment-2-an-express-application-ibo4.onrender.com/)
