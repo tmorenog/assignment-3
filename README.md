@@ -1,5 +1,5 @@
-```markdown
-# Brookline Town Meeting Transcriber
+
+## Brookline Town Meeting Transcriber
 
 A small Express + EJS app for collecting Brookline Town Meeting video links.
 
@@ -58,4 +58,3 @@ npm run dev
 ## Deployment
 
 Deployed on Render: (https://assignment-3-7jlk.onrender.com/)
-```
