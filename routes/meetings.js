@@ -7,7 +7,7 @@ router.get("/new", function(req, res) {
   res.render("meetings/new", { title: "Add Meeting" });
 });
 
-router.post("/", function(req, res) {
+/* router.post("/", function(req, res) {
 
   const meeting = {
     title: req.body.title,
@@ -19,6 +19,24 @@ router.post("/", function(req, res) {
 
   res.redirect("/");
 
+}); */
+
+
+const Meeting = require("../models/Meeting");
+
+router.post("/", async function(req, res, next) {
+  try {
+    await Meeting.create({
+      title: req.body.title,
+      videoUrl: req.body.videoUrl,
+      meetingDate: req.body.meetingDate || undefined
+    });
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;
+
+

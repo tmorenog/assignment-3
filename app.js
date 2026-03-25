@@ -1,4 +1,5 @@
 // app.js
+require("dotenv").config();
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -7,6 +8,12 @@ const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 const meetingsRouter = require("./routes/meetings");
+
+// Adds mongoose connection to MongoDB using the URI from environment variables
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch(err => console.error("MongoDB connection error:", err));
 
 const app = express();
 
@@ -24,7 +31,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // ----- In-memory storage (no database) -----
-app.locals.meetings = app.locals.meetings || []; // array of meeting objects
+// This was the assignment 2. In current assignment, I use database
+// app.locals.meetings = app.locals.meetings || []; // array of meeting objects
 
 // ----- Routes -----
 app.use("/", indexRouter);
