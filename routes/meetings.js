@@ -2,6 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
+const createError = require("http-errors"); // Added this line after copilot suggested code around line 40 and following lines
 
 router.get("/new", function(req, res) {
   res.render("meetings/new", { title: "Add Meeting" });
