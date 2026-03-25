@@ -22,6 +22,11 @@ This prototype will collect Brookline Town Meeting video links.
         Date: <%= m.meetingDate %><br />
       <% } %>
       <a href="<%= m.videoUrl %>" target="_blank" rel="noreferrer"><%= m.videoUrl %></a>
+      <a href="/meetings/<%= m._id %>/edit">Edit</a>
+
+<form method="POST" action="/meetings/<%= m._id %>/delete" style="display:inline;">
+  <button type="submit">Delete</button>
+</form>
     </li>
   <% }) %>
 </ul>

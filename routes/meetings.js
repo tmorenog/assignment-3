@@ -37,6 +37,41 @@ router.post("/", async function(req, res, next) {
   }
 });
 
+// Fetch the meeting and render the edit form
+router.get("/:id/edit", async function(req, res, next) {
+  try {
+    const meeting = await Meeting.findById(req.params.id);
+    if (!meeting) return next(createError(404));
+    res.render("meetings/edit", { title: "Edit Meeting", meeting });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Update the meeting
+router.post("/:id", async function(req, res, next) {
+  try {
+    await Meeting.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      videoUrl: req.body.videoUrl,
+      meetingDate: req.body.meetingDate || undefined
+    });
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Delete the meeting
+router.post("/:id/delete", async function(req, res, next) {
+  try {
+    await Meeting.findByIdAndDelete(req.params.id);
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
 
 
